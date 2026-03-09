@@ -627,7 +627,7 @@ strong, b {
 }
 
 .sidebar-a:hover {
-	background: #f08779;
+	background: #fd887a;
 }
 
 /* Reduce top margin for both image section headings */
@@ -700,6 +700,8 @@ strong, b {
 	box-shadow: inset 2px 2px 0 rgba(0,0,0,0.08);
 }
 
+
+
 .footer-left textarea {
 	width: 100%;
 	padding: 0.6em 0.8em;
@@ -709,7 +711,7 @@ strong, b {
 	font-size: 0.8em;
 	box-shadow: inset 2px 2px 0 rgba(0,0,0,0.08);
 	height: 200px;
-	resize: none;
+	resize: both;
 }
 
 .footer-left input:focus,
@@ -826,6 +828,35 @@ img {
 }
 
 
+/* Hamburger Menu Container */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 35px;
+            height: 28px;
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+
+        /* Three Bars */
+        .hamburger span {
+            width: 100%;
+            height: 4px;
+            background: #ed786a;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hide the checkbox */
+        .menu-toggle {
+            display: none;
+        }
+
+
 
 /* ========================= */
 /* RESPONSIVE DESIGN */
@@ -883,6 +914,69 @@ img {
 
 /* Mobile Landscape (480px to 767px) - UPDATED FOOTER */
 @media screen and (max-width: 767px) {
+
+	/* ===== UPDATED NAVIGATION WITH HAMBURGER ===== */
+    /* Show hamburger on mobile */
+    .hamburger {
+        display: flex;
+    }
+    
+    /* Hide desktop nav initially */
+    #nav {
+        display: none;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+        padding: 20px 0;
+    }
+    
+    /* Show nav when checkbox is checked */
+    .menu-toggle:checked ~ #nav {
+        display: block !important;
+    }
+    
+    /* Transform hamburger to X when checked */
+    .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+    
+    /* Mobile nav menu items */
+    #nav > ul > li {
+        display: block;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+    
+    #nav > ul > li > a {
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+    }
+    
+    #nav > ul > li:last-child > a {
+        border-bottom: none;
+    }
+    
+    #nav > ul > li > a:before {
+        margin-right: 10px;
+        width: 2em;
+        height: 2em;
+        font-size: 14px;
+    }
+
 	.container {
 		width: 100%;
 		padding: 0 15px;
@@ -904,27 +998,7 @@ img {
 		letter-spacing: 2px;
 		margin: 1.5em 0 0 0;
 	}
-	
-	/* Navigation */
-	#nav {
-		position: relative;
-		top: 1em;
-	}
-	
-	#nav > ul > li {
-		display: block;
-		padding-right: 0;
-		margin-bottom: 10px;
-	}
-	
-	#nav > ul > li > a:before {
-		width: 2em;
-		font-size: 14px;
-		height: 2em;
-		line-height: 2em;
-		margin-right: 0.5em;
-	}
-	
+
 	/* Features */
 	#features {
 		padding: 2em 0;
